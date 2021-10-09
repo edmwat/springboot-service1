@@ -1,9 +1,6 @@
 package com.example.jibtest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,15 +11,11 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @RequestMapping(path="api/home")
 public class Welcome {
-	@Autowired 
-	RestTemplate restTemplate;
-	@Autowired
-	Greeting g;
 	 
 	@GetMapping
 	public Greeting welcome() {
 		
-		Greeting greet = new Greeting("Hello, message from CEO,Edward MM "," Enjoy my one command dockerization!");
+		Greeting greet = new Greeting("Hello, message from CEO,Edward MM ","Enjoy my one command dockerization!");
 		return greet;	
 		/*
 		 * HttpHeaders headers = new HttpHeaders(); HttpEntity <String> entity = new
