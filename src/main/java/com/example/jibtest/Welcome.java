@@ -16,20 +16,24 @@ import org.springframework.web.client.RestTemplate;
 public class Welcome {
 	@Autowired 
 	RestTemplate restTemplate;
+	@Autowired
+	Greeting g;
 	 
 	@GetMapping
-	public Object welcome() {
+	public Greeting welcome() {
+		
+		HttpHeaders headers = new HttpHeaders();
+		HttpEntity <String> entity = new HttpEntity<String>(headers);
+		
 		try {
-			HttpHeaders headers = new HttpHeaders();
-			HttpEntity <String> entity = new HttpEntity<String>(headers);
-			return restTemplate.exchange(
+			
+			g = restTemplate.exchange(
 					"https://springservice2-lhefrhbyia-uc.a.run.app/api/gfactory", HttpMethod.GET, entity, Greeting.class).getBody();
 			//Greeting greet = new Greeting("Hello, message from CEO,Edward MM "," Enjoy my one command dockerization!");
 			//return greet;		
-		}catch(Exception ex) {
-			return ex;
-			//System.out.println(ex.getMessage());
+		}catch(Exception ex)  {
+			System.out.println(ex.getMessage());
 		}
-		
+		return g;
 	}
 }
