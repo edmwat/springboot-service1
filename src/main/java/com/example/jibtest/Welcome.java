@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@CrossOrigin(origins = "https://angular8-application-lhefrhbyia-uc.a.run.app", maxAge = 3600)
+@CrossOrigin(origins = {"https://angular8-application-lhefrhbyia-uc.a.run.app","http://localhost:8080/api/home"}, maxAge = 3600)
 @RestController
 @RequestMapping(path="api/home")
 public class Welcome {
@@ -22,18 +22,19 @@ public class Welcome {
 	@GetMapping
 	public Greeting welcome() {
 		
-		HttpHeaders headers = new HttpHeaders();
-		HttpEntity <String> entity = new HttpEntity<String>(headers);
-		
-		try {
-			
-			g = restTemplate.exchange(
-					"https://springservice2-lhefrhbyia-uc.a.run.app/api/gfactory", HttpMethod.GET, entity, Greeting.class).getBody();
-			//Greeting greet = new Greeting("Hello, message from CEO,Edward MM "," Enjoy my one command dockerization!");
-			//return greet;		
-		}catch(Exception ex)  {
-			System.out.println(ex.getMessage());
-		}
-		return g;
+		Greeting greet = new Greeting("Hello, message from CEO,Edward MM "," Enjoy my one command dockerization!");
+		return greet;	
+		/*
+		 * HttpHeaders headers = new HttpHeaders(); HttpEntity <String> entity = new
+		 * HttpEntity<String>(headers);
+		 * 
+		 * try {
+		 * 
+		 * g = restTemplate.exchange(
+		 * "https://springservice2-lhefrhbyia-uc.a.run.app/api/gfactory",
+		 * HttpMethod.GET, entity, Greeting.class).getBody(); }catch(Exception ex) {
+		 * System.out.println(ex.getMessage()); } return g;
+		 */
+		 
 	}
 }
